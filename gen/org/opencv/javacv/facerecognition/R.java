@@ -48,23 +48,23 @@ containing a value of this type.
     public static final class id {
         public static final int any=0x7f050000;
         public static final int back=0x7f050001;
-        public static final int buttonBuscar=0x7f050010;
-        public static final int buttonCat=0x7f050007;
-        public static final int buttonDel=0x7f050005;
-        public static final int editText1=0x7f05000f;
+        public static final int buttonBuscar=0x7f050011;
+        public static final int buttonCat=0x7f050008;
+        public static final int buttonDel=0x7f050007;
+        public static final int editText1=0x7f050010;
         public static final int front=0x7f050002;
         public static final int gallery1=0x7f050003;
-        public static final int imageButton1=0x7f050012;
-        public static final int imageView1=0x7f050009;
-        public static final int imageView2=0x7f05000d;
-        public static final int imageView3=0x7f05000b;
-        public static final int imageView4=0x7f05000c;
+        public static final int imageButton1=0x7f050005;
+        public static final int imageView1=0x7f05000a;
+        public static final int imageView2=0x7f05000e;
+        public static final int imageView3=0x7f05000c;
+        public static final int imageView4=0x7f05000d;
         public static final int switcher=0x7f050004;
         public static final int textView1=0x7f050006;
-        public static final int textViewState=0x7f05000a;
-        public static final int toggleButton1=0x7f05000e;
-        public static final int toggleButtonGrabar=0x7f050011;
-        public static final int tutorial3_activity_java_surface_view=0x7f050008;
+        public static final int textViewState=0x7f05000b;
+        public static final int toggleButton1=0x7f05000f;
+        public static final int toggleButtonGrabar=0x7f050012;
+        public static final int tutorial3_activity_java_surface_view=0x7f050009;
     }
     public static final class layout {
         public static final int catalog_view=0x7f030000;

@@ -20,6 +20,7 @@ import android.util.Log;
 
 public class labels {
 
+	String mPath;
 	 class label
 	{
 		public label(String s, int n) {
@@ -34,9 +35,9 @@ public class labels {
 
 	ArrayList<label> thelist=new ArrayList<label>();
 	
-	public labels()
+	public labels(String Path)
 	{
-		
+		mPath=Path;
 	}
 	
 	public boolean isEmpty()
@@ -72,7 +73,7 @@ public class labels {
 	public void Save()
 	{
 		try {
-			File f=new File (Environment.getExternalStorageDirectory()+"/facerecog/faces.txt");
+			File f=new File (mPath+"faces.txt");
 			f.createNewFile();
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			Iterator<label> Ilabel = thelist.iterator();
@@ -95,7 +96,7 @@ public class labels {
 		try {
 
 			FileInputStream fstream = new FileInputStream(
-					Environment.getExternalStorageDirectory()+"/facerecog/faces.txt");
+					mPath+"faces.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					fstream));
 

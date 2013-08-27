@@ -28,18 +28,21 @@ public  class PersonRecognizer {
 	
 	public final static int MAXIMG = 100;
 	FaceRecognizer faceRecognizer;
-	String path;
+	String mPath;
 	int count=0;
-	labels labelsFile= new labels();
+	labels labelsFile;
 
 	 static  final int WIDTH= 128;
 	 static  final int HEIGHT= 128;;
 	 private int mProb=999;
 	
-    PersonRecognizer()
+    PersonRecognizer(String path)
     {
       faceRecognizer =  com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(2,8,8,8,200);
-  	  path=Environment.getExternalStorageDirectory()+"/facerecog/faces/";
+  	 // path=Environment.getExternalStorageDirectory()+"/facerecog/faces/";
+     mPath=path;
+     labelsFile= new labels(mPath);
+       
     }
     
     void changeRecognizer(int nRec)
@@ -64,7 +67,7 @@ public  class PersonRecognizer {
 		
 		FileOutputStream f;
 		try {
-			f = new FileOutputStream(path+description+"-"+count+".jpg",true);
+			f = new FileOutputStream(mPath+description+"-"+count+".jpg",true);
 			count++;
 			bmp.compress(Bitmap.CompressFormat.JPEG, 100, f);
 			f.close();
@@ -78,7 +81,7 @@ public  class PersonRecognizer {
 	
 	public boolean train() {
 	 	
-		File root = new File(path);
+		File root = new File(mPath);
 
         FilenameFilter pngFilter = new FilenameFilter() {
             public boolean accept(File dir, String name) {
@@ -99,7 +102,7 @@ public  class PersonRecognizer {
         IplImage img=null;
         IplImage grayImg;
 
-        int i1=path.length();
+        int i1=mPath.length();
        
    
         for (File image : imageFiles) {
@@ -108,9 +111,10 @@ public  class PersonRecognizer {
             
             if (img==null)
             	Log.e("Error","Error cVLoadImage");
+            Log.i("image",p);
             
-            int i2=p.indexOf("-");
-            int i3=p.indexOf(".");
+            int i2=p.lastIndexOf("-");
+            int i3=p.lastIndexOf(".");
             int icount=Integer.parseInt(p.substring(i2+1,i3)); 
             if (count<icount) count++;
             

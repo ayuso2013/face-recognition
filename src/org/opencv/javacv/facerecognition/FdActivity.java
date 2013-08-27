@@ -98,6 +98,8 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
     private float                  mRelativeFaceSize   = 0.2f;
     private int                    mAbsoluteFaceSize   = 0;
     private int mLikely=999;
+    
+    String mPath="";
 
     private Tutorial3View   mOpenCvCameraView;
     private int mChooseCamera = backCam;
@@ -125,7 +127,8 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
     int[] labels = new int[(int)MAXIMG];
     int countImages=0;
     
-    labels labelsFile= new labels();
+    labels labelsFile;
+    
     
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -140,7 +143,7 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
             
                     
  
-                    fr=new PersonRecognizer();
+                    fr=new PersonRecognizer(mPath);
                     String s = getResources().getString(R.string.Straininig);
                     Toast.makeText(getApplicationContext(),s, Toast.LENGTH_LONG).show();
                     fr.load();
@@ -210,6 +213,10 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
    
         mOpenCvCameraView.setCvCameraViewListener(this);
        
+        
+        mPath=getFilesDir()+"/facerecogOCV/";
+        		
+        labelsFile= new labels(mPath);
                  
         Iv=(ImageView)findViewById(R.id.imageView1);
         textresult = (TextView) findViewById(R.id.textView1);
@@ -270,6 +277,7 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
         	public void onClick(View view) {
         		Intent i = new Intent(org.opencv.javacv.facerecognition.FdActivity.this,
         				org.opencv.javacv.facerecognition.ImageGallery.class);
+        		i.putExtra("path", mPath);
         		startActivity(i);
         	};
         	});
@@ -384,7 +392,7 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
      			}
      		});
         
-        boolean success=(new File(Environment.getExternalStorageDirectory()+"/facerecog/faces")).mkdirs();
+        boolean success=(new File(mPath)).mkdirs();
         if (!success)
         {
         	Log.e("Error","Error creating directory");

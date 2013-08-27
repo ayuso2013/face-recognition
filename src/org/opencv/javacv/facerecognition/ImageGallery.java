@@ -26,6 +26,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Gallery;
 import android.widget.Gallery.LayoutParams;
+import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,9 +40,10 @@ public class ImageGallery extends Activity implements
 	int count=0;
 	Bitmap bmlist[];
 	String namelist[];
-	String path=Environment.getExternalStorageDirectory()+"/facerecog/faces/";
+	String mPath="";
 	TextView name;
 	Button buttonDel;
+	ImageButton buttonBack;
 	Gallery g;
 	
     @Override
@@ -52,6 +54,8 @@ public class ImageGallery extends Activity implements
         setContentView(R.layout.catalog_view);
         name=(TextView)findViewById(R.id.textView1);
         buttonDel=(Button)findViewById(R.id.buttonDel);
+        buttonBack=(ImageButton)findViewById(R.id.imageButton1);
+
  
         mSwitcher = (ImageSwitcher) findViewById(R.id.switcher);
         mSwitcher.setFactory(this);
@@ -60,8 +64,10 @@ public class ImageGallery extends Activity implements
         mSwitcher.setOutAnimation(AnimationUtils.loadAnimation(this,
                 android.R.anim.fade_out));
  
+        Bundle bundle = getIntent().getExtras();
+        mPath=bundle.getString("path");
         
-        thelabels=new labels();
+        thelabels=new labels(mPath);
         thelabels.Read();
         
         count=0;
@@ -83,7 +89,7 @@ public class ImageGallery extends Activity implements
     	{
     		if (thelabels.get(i)!="")
     		{
-    			File root = new File(path);
+    			File root = new File(mPath);
     			final String fname=thelabels.get(i);
     	        FilenameFilter pngFilter = new FilenameFilter() {
     	            public boolean accept(File dir, String name) {
@@ -116,10 +122,19 @@ public class ImageGallery extends Activity implements
         g.setAdapter(new ImageAdapter(this));
         g.setOnItemSelectedListener(this);
         
+        
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View v) {
+        		
+        		finish();
+        		
+        	}
+        });
+        
         buttonDel.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         	
-        		File root = new File(path);
+        		File root = new File(mPath);
     			
     	        FilenameFilter pngFilter = new FilenameFilter() {
     	            public boolean accept(File dir, String n) {
