@@ -36,13 +36,15 @@ public  class PersonRecognizer {
 	 static  final int HEIGHT= 128;;
 	 private int mProb=999;
 	
+	 
     PersonRecognizer(String path)
     {
       faceRecognizer =  com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(2,8,8,8,200);
   	 // path=Environment.getExternalStorageDirectory()+"/facerecog/faces/";
      mPath=path;
      labelsFile= new labels(mPath);
-       
+     
+  
     }
     
     void changeRecognizer(int nRec)
