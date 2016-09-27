@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
-
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
@@ -21,7 +20,6 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.javacv.facerecognition.R;
-
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
 import org.opencv.objdetect.CascadeClassifier;
 
@@ -30,11 +28,9 @@ import com.googlecode.javacv.cpp.opencv_imgproc;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
-
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -128,7 +124,10 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
     int countImages=0;
     
     labels labelsFile;
-    
+	static {
+		OpenCVLoader.initDebug();            
+    	System.loadLibrary("opencv_java");	       	 
+	}
     
     private BaseLoaderCallback  mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -426,7 +425,9 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
     public void onResume()
     {
         super.onResume();
-        OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this, mLoaderCallback);
+       // OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this, mLoaderCallback);
+        mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+
        
       	
     }
