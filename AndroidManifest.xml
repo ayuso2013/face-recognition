@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     	  android:installLocation="auto"
           package="org.opencv.javacv.facerecognition"
-          android:versionCode="22"
-          android:versionName="2.2">
+          android:versionCode="24"
+          android:versionName="2.4">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:label="@string/app_name"

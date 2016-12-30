@@ -6,7 +6,6 @@
     <string name="SSearch">Buscar</string>
     <string name="STrain">Entrenar</string>
     <string name="SViewAll">Ver todo</string>
-    <string name="app_name">OCV Reconocer caras</string>
     <string name="SEnter">Escriba nombre,luego pulse Rec</string>
     <string name="SStopTrain">Parar entreno</string>
     <string name="SStopSearch">Parar búsqueda</string>
